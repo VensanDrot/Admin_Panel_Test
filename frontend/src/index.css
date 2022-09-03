@@ -1,0 +1,188 @@
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        box-sizing: border-box;
+        list-style: none;
+        /** font-size: 1.1rem; */
+        text-decoration: none;
+    }
+    
+     :root {
+        /*
+  */
+        --color-bg: rgb(37, 54, 86);
+        --color-bg-variant: rgb(117, 156, 201);
+        --color-primary: rgb(113, 46, 137);
+        /*rgb(255, 255, 255); */
+        --color-white: white;
+        --color-primary-variant: rgb(155, 248, 251);
+        --color-light: #555;
+        /** 
+    division
+    **/
+        --transition: all 400ms ease;
+        --container-width-lg: 75%;
+        --container-width-md: 86%;
+        --container-width-sm: 90%;
+        --old: 1.2rem;
+        --old-big: 2.5rem;
+        --small-font: 1.15rem;
+        --big-font: 2.45rem;
+        --btn-pad: 0.75rem 1.2rem;
+        --line-height: 1.7;
+        --pad: 75px;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+     ::-webkit-scrollbar {}
+    
+    body {
+        font-family: "Poppins", sans-serif;
+        /* background: var(--color-bg);  */
+        font-size: var(--small-font);
+        color: var(--color-light);
+        line-height: var(--line-height);
+    }
+    /* ====================== General Styles ====================== */
+    
+    .container {
+        width: var(--container-width-lg);
+        margin: 0 auto;
+    }
+    
+    .flex {
+        display: grid;
+        grid-template-columns: 13% 80%;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-weight: 500;
+    }
+    
+    h1 {
+        font-size: var(--big-font);
+    }
+    
+    section {
+        margin-top: 3rem;
+        overflow-x: hidden;
+    }
+    
+    section>h2,
+    section>h5 {
+        text-align: center;
+        color: var(--color-light);
+    }
+    
+    section>h2 {
+        color: var(--color-primary);
+        margin-bottom: 3rem;
+    }
+    
+    .text-light {
+        color: var(--color-light);
+    }
+    
+    a {
+        color: var(--color-light);
+        transition: var(--transition);
+        cursor: pointer;
+    }
+    
+    a:hover {
+        color: var(--color-primary-variant);
+    }
+    
+    .btn {
+        width: max-content;
+        display: inline-block;
+        color: var(--color-white);
+        padding: 0.75rem 1.2rem;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        background-color: var(--color-bg-variant);
+        border: 1px solid var(--color-primary-variant);
+        transition: var(--transition);
+    }
+    
+    .btn:hover {
+        background-color: var(--color-bg);
+        color: var(--color-white);
+        border-color: transparent;
+    }
+    
+    .btn-primary {
+        background: var(--color-white);
+        color: var(--color-light);
+    }
+    
+    img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
+    }
+    /* ================== MEDIA QUERIES (MEDIUM DEVICES) ============= */
+    
+    @media screen and (max-width: 1024px) {
+        .container {
+            width: var(--container-width-md);
+        }
+        section {
+            margin-top: 6rem;
+        }
+         :root {
+            --pad: 25px;
+            --small-font: 1.1rem;
+            --pad: 14px;
+            --big-font: 1.6rem;
+            --btn-pad: 0.7rem 1.25rem;
+            --line-height: 1.4;
+        }
+    }
+    /* ================== MEDIA QUERIES (SMALL DEVICES) ============= */
+    
+    @media screen and (max-width: 600px) {
+        .container {
+            width: var(--container-width-sm);
+        }
+        section>h2 {
+            margin-bottom: 2rem;
+        }
+         :root {
+            --small-font: 1rem;
+            --pad: 14px;
+            --big-font: 1.5rem;
+            --btn-pad: 0.6rem 1.15rem;
+            --line-height: 1.3;
+        }
+        section {
+            margin-top: 4rem;
+        }
+    }
+    /* ================== MEDIA QUERIES (Extra SMALL DEVICES) ============= */
+    
+    @media screen and (max-width: 450px) {
+        .container {
+            width: var(--container-width-sm);
+        }
+        section>h2 {
+            margin-bottom: 2rem;
+        }
+         :root {
+            --small-font: 0.9rem;
+            --pad: 7px;
+            --big-font: 1.4rem;
+            --btn-pad: 0.6rem 1.15rem;
+            --line-height: 1.4;
+        }
+    }
