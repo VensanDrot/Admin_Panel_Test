@@ -10,15 +10,16 @@ const Inteam = () => {
   const [error2, setErr2] = useState(null);
   const [name, SetName] = useState("");
   const [occupation, Setoccupation] = useState("");
-  const [image, Setimage] = useState();
+  const [image, Setimage] = useState({file:[]});
   const icon = 'shoul be the link to photo'
 
 
   const handler = (e) => {
-    const file = e.target.files;
-    Setimage(file[0]);
-    //console.log(image);
+    Setimage({
+      file: e.target.files[0],
+    })
   }
+
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -26,20 +27,19 @@ const Inteam = () => {
     SetName(e.target.name.value);
     Setoccupation(e.target.occupation.value);
 
-    /*
+   
     
     const data = new FormData();
-    data.append('file',image);
+    data.append('image',image.file);
 
-    axios.post('http://localhost:3001/upload', data)
-    .then((e)=> {
-      console.log('success')
+    axios.post('http://localhost:3001/upload', data,{
+      headers:{"Content-type": "multipart/form-data"}
     })
-    .catch((err)=>{
-      console.log(err);
+    .then(res => {
+      console.log(res);
     })
-    
-    */
+
+     /* */
 
     if (name.length >= 2 && name.length <= 120 && name !== null) {
       setErr1(null);
@@ -59,7 +59,7 @@ const Inteam = () => {
     }
 
     //console.log(num);
-    if(num < 1) {
+    if(num < -1) {
       //console.log('here');
          const response = await fetch("http://localhost:3001/createteam", {
          method: "post",

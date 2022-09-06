@@ -119,32 +119,43 @@ app.post("/dclient", async (req: Request, res: Response) => {
   res.json(user);
 });
 
-
 // upload photo try
 
 const storage = multer.diskStorage({
-  destination: (req,file, cb) => {
-     cb(null,'./public/');
-     console.log(file);
-  },
+  destination: path.join(__dirname,'../image/'),
   filename: (req,file,cb) => {
     const filename =  Date.now() + '-' + file.originalname;
     cb(null, filename);
-    
   }
 })
 
 
-const upload = multer({storage}).single('file');
-
 app.post('/upload', async (req,res)=> {
-  upload(req,res,(err)=> {
-    if (err){
-      return res.status(500).json(err)
-    }
   
-    return res.status(200).send(req.file);
-  })
+  try{
+    let upload = multer({storage:storage}).single('image')
+    upload(req,res,function(err) {
+      if(!req.file) {
+        return res.send('Please select an image to upload'); 
+      }
+      else if(err instanceof multer.MulterError) {
+        return res.send(err);
+      }
+      else if(err) {
+        return res.send(err);
+      }
+      else {
+
+        res.send();
+      }
+    })
+   
+
+  }
+  catch(err) {console.log(err)}
+  
+
+
 })
 
 
