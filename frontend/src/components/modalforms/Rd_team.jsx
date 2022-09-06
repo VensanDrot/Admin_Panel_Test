@@ -48,7 +48,7 @@ const Rd_team = () => {
             <div>
               <p>Род Деятельности</p>
             </div>
-            <div>
+            <div className="image">
               <p>Картинка</p>
             </div>
           </div>
@@ -60,13 +60,13 @@ const Rd_team = () => {
         
             <Link className="pre" id={g.id} to={"/Tm_edit/"+g.id} ><FaEdit /></Link>
             </div>
-            <div className="scroll">
+            <div className="scorll">
               <p>{g.name}</p>
             </div>
-            <div className="scroll">
+            <div className="scorll">
               <p>{g.occupation}</p>
             </div>
-            <div className="scroll">
+            <div className="image">
               <img src={g.icon} alt="" />
             </div>
            

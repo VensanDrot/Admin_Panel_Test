@@ -19,7 +19,7 @@ function App() {
       <BrowserRouter>
       <div className="home">
       <Sidebar />
-      <div className="homeContainer">
+      <div className="homeContainer container">
         <Navbar />
         
         <Routes>

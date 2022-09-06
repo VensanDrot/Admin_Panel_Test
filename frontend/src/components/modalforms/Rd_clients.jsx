@@ -50,10 +50,10 @@ const Rd_clients = () => {
               <div>
                 <p>Категория</p>
               </div>
-              <div className="scroll">
+              <div >
                 <p>Описание</p>
               </div>
-              <div>
+              <div className="image">
                 <p>Картинка</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ const Rd_clients = () => {
               <div className="scroll">
                 <p>{g.description}</p>
               </div>
-              <div>
+              <div className="image">
               <img src={g.image} alt="" />
               </div>
             </div>
