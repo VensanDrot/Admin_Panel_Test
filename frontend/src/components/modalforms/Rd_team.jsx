@@ -40,16 +40,13 @@ const Rd_team = () => {
   return (
     <div className="list">
       <h1>Список сотрудников</h1>
-    <div  className="answers_client height">
+    <div  className="answers height">
             <div className="group"><p> Айди </p> </div>
             <div>
               <p>Имя</p>
             </div>
             <div>
-              <p>Категория</p>
-            </div>
-            <div className="scroll">
-              <p>Описание</p>
+              <p>Род Деятельности</p>
             </div>
             <div>
               <p>Картинка</p>
@@ -58,7 +55,7 @@ const Rd_team = () => {
 
       {team.map((g) => {
         return (
-          <div key={g.id} className="answers_client">
+          <div key={g.id} className="answers">
             <div className="group"><p> {g.id} </p> <button className="pre" id={g.id} onClick={del} ><TiUserDelete /></button>
         
             <Link className="pre" id={g.id} to={"/Tm_edit/"+g.id} ><FaEdit /></Link>
