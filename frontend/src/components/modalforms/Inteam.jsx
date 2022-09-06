@@ -11,7 +11,6 @@ const Inteam = () => {
   const [name, SetName] = useState("");
   const [occupation, Setoccupation] = useState("");
   const [image, Setimage] = useState({file:[]});
-  const icon = 'shoul be the link to photo'
 
 
   const handler = (e) => {
@@ -31,15 +30,22 @@ const Inteam = () => {
     
     const data = new FormData();
     data.append('image',image.file);
-
+  /*
+    axios hard to save variable went to old type of fetch
+    
     axios.post('http://localhost:3001/upload', data,{
       headers:{"Content-type": "multipart/form-data"}
     })
     .then(res => {
-      console.log(res);
+      response = res.data;
+      
+    return  response 
     })
+    console.log(response)
+    */
 
-     /* */
+
+       
 
     if (name.length >= 2 && name.length <= 120 && name !== null) {
       setErr1(null);
@@ -59,7 +65,13 @@ const Inteam = () => {
     }
 
     //console.log(num);
-    if(num < -1) {
+    if(num < 1) {
+      const icon = await fetch("http://localhost:3001/upload", {
+        method: "post",
+        body: data,
+      
+      }).then(res => res.text())
+
       //console.log('here');
          const response = await fetch("http://localhost:3001/createteam", {
          method: "post",

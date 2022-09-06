@@ -11,13 +11,13 @@ const Inclient = () => {
   const [name, SetName] = useState("");
   const [category, Setcategory] = useState("");
   const [description, Setdescription] = useState("");
-  const [image1, Setimage1] = useState("");
-  const image = 'there should be a link01';
+  const [image1, Setimage1] = useState({file:[]});
+  
   
   const handler = (e) => {
-    const file = e.target.files;
-    Setimage1(file[0]);
-    //console.log(image);
+    Setimage1({
+      file: e.target.files[0],
+    })
   }
 
 
@@ -32,6 +32,9 @@ const Inclient = () => {
     Setcategory(e.target.category.value);
     Setdescription(e.target.description.value);
   
+      
+    const data = new FormData();
+    data.append('image',image1.file);
 
 
     if (name.length >= 2 && name.length <= 30 && name !== null) {
@@ -60,6 +63,13 @@ const Inclient = () => {
     //console.log(name, " ", description, " ", category, " ", image);
     
     if ( num < 1 ) {
+      const image = await fetch("http://localhost:3001/upload", {
+        method: "post",
+        body: data,
+      
+      }).then(res => res.text())
+
+
       const response = await fetch("http://localhost:3001/createclient", {
         method: "post",
         body: JSON.stringify({ name, category, description, image }),
@@ -73,7 +83,7 @@ const Inclient = () => {
     
     }
 
-    //    e.target.reset();
+        e.target.reset();
   };
 
   return (

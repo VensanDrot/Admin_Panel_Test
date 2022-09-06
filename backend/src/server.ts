@@ -146,7 +146,7 @@ app.post('/upload', async (req,res)=> {
       }
       else {
 
-        res.send();
+        res.send(req.file.path);
       }
     })
    
