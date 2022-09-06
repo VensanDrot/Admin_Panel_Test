@@ -71,8 +71,8 @@ const Inteam = () => {
         body: data,
       
       }).then(res => res.text())
-
-      //console.log('here');
+      console.log(icon);
+      /*console.log('here'); */
          const response = await fetch("http://localhost:3001/createteam", {
          method: "post",
          body: JSON.stringify({ name, occupation, icon }),
@@ -83,6 +83,7 @@ const Inteam = () => {
       
        SetName('');
        Setoccupation('');
+      
      }
 
  

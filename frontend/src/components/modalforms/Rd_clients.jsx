@@ -75,7 +75,7 @@ const Rd_clients = () => {
                 <p>{g.description}</p>
               </div>
               <div>
-                <p>{g.image}</p>
+              <img src={g.image} alt="" />
               </div>
             </div>
           );

@@ -123,11 +123,15 @@ app.post("/dclient", async (req: Request, res: Response) => {
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname,'../image/'),
+   
   filename: (req,file,cb) => {
     const filename =  Date.now() + '-' + file.originalname;
     cb(null, filename);
-  }
+    console.log(path.join(__dirname,'../image/'));
+  },
+  
 })
+
 
 
 app.post('/upload', async (req,res)=> {
@@ -145,8 +149,7 @@ app.post('/upload', async (req,res)=> {
         return res.send(err);
       }
       else {
-
-        res.send(req.file.path);
+        res.send("http://localhost:3001/image/"+req.file.filename);
       }
     })
    
@@ -156,6 +159,13 @@ app.post('/upload', async (req,res)=> {
   
 
 
+})
+
+
+
+app.get('/image/:name',async (req,res)=> {
+  console.log(req.params.name)
+    res.download('./image/'+req.params.name);
 })
 
 

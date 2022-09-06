@@ -67,7 +67,7 @@ const Rd_team = () => {
               <p>{g.occupation}</p>
             </div>
             <div className="scroll">
-              <p>{g.icon}</p>
+              <img src={g.icon} alt="" />
             </div>
            
           </div>
