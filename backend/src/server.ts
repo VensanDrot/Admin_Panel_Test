@@ -193,7 +193,7 @@ app.post('/upclientimg',async (req:Request,res:Response)=> {
 
 app.post('/upteamimg',async (req:Request,res:Response)=> {
   //console.log(req.body);
-  const {id,name, occupation, image} = req.body;
+  const {id,name, occupation, icon} = req.body;
   const updateUser = await prisma.team.update({
     where: {
       id: Number(id),
@@ -201,7 +201,7 @@ app.post('/upteamimg',async (req:Request,res:Response)=> {
     data: {
       name: name,
       occupation: occupation,
-      icon: image,
+      icon: icon,
     },
   })
 })
