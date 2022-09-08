@@ -9,24 +9,50 @@ const Tm_edit = () => {
     let { id } = useParams();
     const form = useRef();
     let num =0;
+  const [flag, setFlag] = useState(true)
   const [error1, setErr1] = useState(null);
   const [error2, setErr2] = useState(null);
   const [name, SetName] = useState("");
   const [occupation, Setoccupation] = useState("");
-  const [image, Setimage] = useState();
+  const [client, Setclient] = useState([]);
+  const [oldlink, Setold] = useState();
+  const [image, Setimage] = useState({file:[]});
 
-    const [client, Setclient] = useState([]);
+  // image handler 
+  const handler = (e) => {
+    Setimage({
+      file: e.target.files[0],
+    })
+     setFlag(false);
+  }
+
+  //fetch data input 
+  
+  const response = fetch("http://localhost:3001/team", {
+    method: "post",
+    body: JSON.stringify({ id }),
+    headers: { "Content-Type": "application/json" },
+  }).then((res) => res.json());
+
+
+  useEffect(() => {
+  response.then((data) => {
+  Setclient(data);
+  });
+  }, []);
+
+  useEffect(()=> {
+      
+  SetName(client.name);
+  Setoccupation(client.occupation);
+  Setold(client.icon);
+  
+  }, [id,client,])
+  
    
-
-    const handler = (e) => {
-      const file = e.target.files;
-      Setimage(file[0]);
-      //console.log(image);
-       }
-       
     
   
-       const sendEmail = async (e) => {
+       const SendEmail = async (e) => {
         e.preventDefault();
         num = 0;
         SetName(e.target.name.value);
@@ -49,41 +75,50 @@ const Tm_edit = () => {
             num++;
         }
 
-        //console.log(num);
-        if (num < 1) {
-           // console.log('here');
+       console.log(flag);
+
+        if (num < 1 && flag === true) {
+        const icon = oldlink;
+        console.log('content only');
         const response = await fetch("http://localhost:3001/upteamimg", {
-         method: "post",
-         body: JSON.stringify({id, name, occupation, image }),
-         headers: { "Content-Type": "application/json" },
-       });
+          method: "post",
+          body: JSON.stringify({id, name, occupation, icon }),
+          headers: { "Content-Type": "application/json" },
+        });
+         
     }
-        e.target.reset();
+    else if (num <1 && flag === false) {
+    const nameOfPic = oldlink.split('/').slice(4);
+    
+    fetch("http://localhost:3001/delimage/"+nameOfPic, {
+     method: "get",
+    }).then((res) => res.text());
+
+    const data = new FormData();
+    data.append('image',image.file);
+    const icon = await fetch("http://localhost:3001/upload", {
+      method: "post",
+      body: data,
+    
+    }).then(res => res.text())
+
+    Setold(icon);
+    
+          fetch("http://localhost:3001/upteamimg", {
+         method: "post",
+         body: JSON.stringify({id, name, occupation, icon }),
+         headers: { "Content-Type": "application/json" },
+       })
+
+      setFlag(true);
+      console.log(flag + 'ss');
+     
+      }
+
+      e.target.reset();
       }
 
 
-
-      const response = fetch("http://localhost:3001/team", {
-        method: "post",
-        body: JSON.stringify({ id }),
-        headers: { "Content-Type": "application/json" },
-      }).then((res) => res.json());
-    
-    
-      useEffect(() => {
-      response.then((data) => {
-      Setclient(data);
-      });
-      }, []);
-
-      useEffect(()=> {
-          
-      SetName(client.name);
-      Setoccupation(client.occupation);
-      Setimage(client.image);
-      
-      }, [id,client])
-      
   
 
 
@@ -94,7 +129,7 @@ const Tm_edit = () => {
 
     <div className="container content">
     <h2 className="form_name">Форма редактирования сотрудника</h2>
-      <form ref={form} onSubmit={sendEmail}>
+      <form ref={form} onSubmit={SendEmail}>
         {error1}
         <input
           onChange={(e) => {
@@ -134,6 +169,7 @@ const Tm_edit = () => {
             onClick={() => {
               Setoccupation("");
               SetName("");
+            
             }}
           >
             Очистить все поля
@@ -147,3 +183,7 @@ const Tm_edit = () => {
 
 
 export default Tm_edit;
+
+
+//const link =https://localhost/image/asdjflkaksdjflkas
+ 

@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 import multer from "multer"
 import cors from 'cors'
 import path from "path"
-
+import fs, { fstat }from 'fs';
 
 
 
@@ -169,6 +169,13 @@ app.get('/image/:name',async (req,res)=> {
 })
 
 
+app.get('/delimage/:name',async (req,res)=> {
+  console.log(req.params.name)
+    fs.unlink('./image/' + req.params.name, function() {
+      res.send('done');
+    })
+})
+
 // end of upload (not working idk)
 
 
@@ -188,6 +195,7 @@ app.post('/upclientimg',async (req:Request,res:Response)=> {
       image:image,
     },
   })
+  res.send('working');
 })
 
 
