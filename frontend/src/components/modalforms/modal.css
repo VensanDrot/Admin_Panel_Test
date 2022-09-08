@@ -1,167 +1,161 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
 }
 
 .content {
-    padding: 25px 40px;
-    border-radius: 12px;
-    background-color: var(--color-white);
-    min-height: 50vh;
-    max-height: 80vh;
-    overflow-y: scroll;
-    overflow: hidden;
-    width: 70%;
+  padding: 25px 40px;
+  border-radius: 12px;
+  background-color: var(--color-white);
+  min-height: 50vh;
+  max-height: 80vh;
+  overflow-y: scroll;
+  overflow: hidden;
+  width: 70%;
 }
 
 .modal.active {
-    opacity: 1;
-    pointer-events: all;
+  opacity: 1;
+  pointer-events: all;
 }
 
 .modal_container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .move-right {
-    margin-left: 100%;
+  margin-left: 100%;
 }
 
-
 /* main end */
-
 
 /* Form style */
 
 .form_name {
-    margin-bottom: 1.5rem;
-    text-align: center;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .group_but {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
 }
 
 .content input,
 textarea {
-    width: 100%;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background: transparent;
-    border: 2px solid var(--color-primary-variant);
-    resize: none;
-    color: var(--color-light);
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: 2px solid var(--color-primary-variant);
+  resize: none;
+  color: var(--color-light);
 }
 
-
 /* end form style */
-
 
 /* show the list's */
 
 .group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    height: auto !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  height: auto !important;
 }
 
 .pre {
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .pre svg {
-    color: var(--color-primary);
-    font-size: 1.6rem;
+  color: var(--color-primary);
+  font-size: 1.6rem;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .answers_client,
 .answers {
-    display: grid;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border: 2px solid var(--color-bg);
-    border-radius: 7px;
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 2px solid var(--color-bg);
+  border-radius: 7px;
 }
 
 .height {
-    height: 60px !important;
-    overflow: hidden;
+  height: 60px !important;
+  overflow: hidden;
 }
 
 .image {
-    height: 20vh !important;
-    position: relative;
-    overflow: hidden !important;
-    width: 93%;
-    display: flex;
-    justify-content: center;
+  height: 20vh !important;
+  position: relative;
+  overflow: hidden !important;
+  width: 93%;
+  display: flex;
+  justify-content: center;
 }
 
 .image img {
-    /* width: auto; */
-    height: 100%;
-    border-radius: 8px;
-    object-fit: cover;
+  /* width: auto; */
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .scroll {
-    height: 20vh;
-    overflow-wrap: break-word;
-    overflow-y: auto;
-    overflow-x: hidden;
+  height: 20vh;
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .answers {
-    grid-template-columns: 10% 30% 30% 30%;
+  grid-template-columns: 10% 30% 30% 30%;
 }
 
 .answers_client {
-    grid-template-columns: 10% 20% 20% 23% 23%;
+  grid-template-columns: 10% 20% 20% 23% 23%;
 }
 
-
 /* end of slist's */
-
 
 /*  Form Width Queries   */
 
 @media screen and (max-width: 450px) {
-    .content {
-        width: 100%;
-    }
-    .group_but {
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .content {
+    width: 100%;
+  }
+  .group_but {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }

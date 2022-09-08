@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./modal.css";
-import {TiUserDelete} from "react-icons/ti"
-import {FaEdit} from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { TiUserDelete } from "react-icons/ti";
+import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Rd_clients = () => {
   /* here console.log("here"); */
@@ -18,76 +18,79 @@ const Rd_clients = () => {
     });
   }, []);
 
-
-  const del = async (image, event) => 
-  {
-    console.log('here');
-    const nameOfPic = image.split('/').slice(4);
-    fetch("http://localhost:3001/delimage/"+nameOfPic, {
-     method: "get",
+  const del = async (image, event) => {
+    console.log("here");
+    const nameOfPic = image.split("/").slice(4);
+    fetch("http://localhost:3001/delimage/" + nameOfPic, {
+      method: "get",
     }).then((res) => res.text());
 
-   const id = event.currentTarget.id;
-  const response = await fetch("http://localhost:3001/dclient", {
-     method: "post",
-     body: JSON.stringify({ id }),
-     headers: { "Content-Type": "application/json" },
-   }); 
+    const id = event.currentTarget.id;
+    const response = await fetch("http://localhost:3001/dclient", {
+      method: "post",
+      body: JSON.stringify({ id }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-   window.location.reload(true);
-  }
+    window.location.reload(true);
+  };
 
-  const edit = '';
-
-  
-
-
+  const edit = "";
 
   /* here console.log(client);*/
   return (
-      
-      <div className="list">
-        <h1>Список клиентов</h1>
-      <div  className="answers_client height">
-              <div className="group"><p> Айди </p> </div>
-              <div>
-                <p>Имя</p>
-              </div>
-              <div>
-                <p>Категория</p>
-              </div>
-              <div >
-                <p>Описание</p>
-              </div>
-              <div className="image">
-                <p>Картинка</p>
-              </div>
-            </div>
-
-        {client.map((g) => {
-          return (
-            <div key={g.id} className="answers_client">
-              <div className="group"><p> {g.id} </p> <button className="pre" id={g.id} onClick={(event)=>del(g.image, event)} ><TiUserDelete /></button>
-          
-              <Link className="pre" id={g.id} to={"/Cl_Edit/"+g.id} ><FaEdit /></Link>
-              </div>
-              <div className="scroll">
-                <p>{g.name}</p>
-              </div>
-              <div className="scroll">
-                <p>{g.category}</p>
-              </div>
-              <div className="scroll">
-                <p>{g.description}</p>
-              </div>
-              <div className="image">
-              <img src={g.image} alt="" />
-              </div>
-            </div>
-          );
-        })}
+    <div className="list">
+      <h1>Список клиентов</h1>
+      <div className="answers_client height">
+        <div className="group">
+          <p> Айди </p>{" "}
+        </div>
+        <div>
+          <p>Имя</p>
+        </div>
+        <div>
+          <p>Категория</p>
+        </div>
+        <div>
+          <p>Описание</p>
+        </div>
+        <div className="image">
+          <p>Картинка</p>
+        </div>
       </div>
-  
+
+      {client.map((g) => {
+        return (
+          <div key={g.id} className="answers_client">
+            <div className="group">
+              <p> {g.id} </p>{" "}
+              <button
+                className="pre"
+                id={g.id}
+                onClick={(event) => del(g.image, event)}
+              >
+                <TiUserDelete />
+              </button>
+              <Link className="pre" id={g.id} to={"/Cl_Edit/" + g.id}>
+                <FaEdit />
+              </Link>
+            </div>
+            <div className="scroll">
+              <p>{g.name}</p>
+            </div>
+            <div className="scroll">
+              <p>{g.category}</p>
+            </div>
+            <div className="scroll">
+              <p>{g.description}</p>
+            </div>
+            <div className="image">
+              <img src={g.image} alt="" />
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

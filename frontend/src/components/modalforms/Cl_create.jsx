@@ -6,7 +6,6 @@ import { ImCross } from "react-icons/im";
 import Rd_team from "./Rd_team";
 import Rd_clients from "./Rd_clients";
 
-
 const cl_create = ({ active, SetActive, parser }) => {
   const choose = () => {
     if (parser == "inteam") {
@@ -18,7 +17,6 @@ const cl_create = ({ active, SetActive, parser }) => {
     } else if (parser == "readclient") {
       return <Rd_clients />;
     }
-    
   };
 
   return (

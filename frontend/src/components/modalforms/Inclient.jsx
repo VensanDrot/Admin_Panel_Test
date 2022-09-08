@@ -11,16 +11,13 @@ const Inclient = () => {
   const [name, SetName] = useState("");
   const [category, Setcategory] = useState("");
   const [description, Setdescription] = useState("");
-  const [image1, Setimage1] = useState({file:[]});
-  
-  
+  const [image1, Setimage1] = useState({ file: [] });
+
   const handler = (e) => {
     Setimage1({
       file: e.target.files[0],
-    })
-  }
-
-
+    });
+  };
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -31,44 +28,38 @@ const Inclient = () => {
     SetName(e.target.name.value);
     Setcategory(e.target.category.value);
     Setdescription(e.target.description.value);
-  
-      
-    const data = new FormData();
-    data.append('image',image1.file);
 
+    const data = new FormData();
+    data.append("image", image1.file);
 
     if (name.length >= 2 && name.length <= 30 && name !== null) {
       setErr1(null);
-    }
-    else {
+    } else {
       setErr1("Имя слишком короткое");
       num++;
     }
 
     if (category.toString().length <= 11 && category !== null) {
       setErr2(null);
-    }
-    else {
-       setErr2("Слишком длинное число");
-       num++;
+    } else {
+      setErr2("Слишком длинное число");
+      num++;
     }
 
     if (description !== null) {
       setErr3(null);
-    }else{
-       setErr3("Введите описание");
-       num++;
+    } else {
+      setErr3("Введите описание");
+      num++;
     }
 
     //console.log(name, " ", description, " ", category, " ", image);
-    
-    if ( num < 1 ) {
+
+    if (num < 1) {
       const image = await fetch("http://localhost:3001/upload", {
         method: "post",
         body: data,
-      
-      }).then(res => res.text())
-
+      }).then((res) => res.text());
 
       const response = await fetch("http://localhost:3001/createclient", {
         method: "post",
@@ -79,11 +70,9 @@ const Inclient = () => {
       SetName("");
       Setcategory("");
       Setdescription("");
-
-    
     }
 
-        e.target.reset();
+    e.target.reset();
   };
 
   return (

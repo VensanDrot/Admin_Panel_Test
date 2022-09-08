@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./modal.css";
-import axios from "axios"
+import axios from "axios";
 import { stringify } from "query-string";
 
 const Inteam = () => {
@@ -10,15 +10,13 @@ const Inteam = () => {
   const [error2, setErr2] = useState(null);
   const [name, SetName] = useState("");
   const [occupation, Setoccupation] = useState("");
-  const [image, Setimage] = useState({file:[]});
-
+  const [image, Setimage] = useState({ file: [] });
 
   const handler = (e) => {
     Setimage({
       file: e.target.files[0],
-    })
-  }
-
+    });
+  };
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -26,11 +24,9 @@ const Inteam = () => {
     SetName(e.target.name.value);
     Setoccupation(e.target.occupation.value);
 
-   
-    
     const data = new FormData();
-    data.append('image',image.file);
-  /*
+    data.append("image", image.file);
+    /*
     axios hard to save variable went to old type of fetch
     
     axios.post('http://localhost:3001/upload', data,{
@@ -44,54 +40,44 @@ const Inteam = () => {
     console.log(response)
     */
 
-
-       
-
     if (name.length >= 2 && name.length <= 120 && name !== null) {
       setErr1(null);
-    }
-    else {
-      setErr1('Введите коректное имя(макс:120 символов)');
+    } else {
+      setErr1("Введите коректное имя(макс:120 символов)");
       num++;
     }
 
-       
-    if (occupation.length >= 1 &&occupation.length <= 120 &&occupation !== null) {
+    if (
+      occupation.length >= 1 &&
+      occupation.length <= 120 &&
+      occupation !== null
+    ) {
       setErr2(null);
-    }
-    else {
-      setErr2('Введите коректное состояние(макс:120 символов)');
+    } else {
+      setErr2("Введите коректное состояние(макс:120 символов)");
       num++;
     }
 
     //console.log(num);
-    if(num < 1) {
+    if (num < 1) {
       const icon = await fetch("http://localhost:3001/upload", {
         method: "post",
         body: data,
-      
-      }).then(res => res.text())
-      
+      }).then((res) => res.text());
+
       /*console.log('here'); */
-         const response = await fetch("http://localhost:3001/createteam", {
-         method: "post",
-         body: JSON.stringify({ name, occupation, icon }),
-         headers: { "Content-Type": "application/json" },
-       });
-       
+      const response = await fetch("http://localhost:3001/createteam", {
+        method: "post",
+        body: JSON.stringify({ name, occupation, icon }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-      
-       SetName('');
-       Setoccupation('');
-      
-     }
-
- 
+      SetName("");
+      Setoccupation("");
+    }
 
     e.target.reset();
-  }
-
-
+  };
 
   return (
     <div>
@@ -126,7 +112,7 @@ const Inteam = () => {
         <input type="file" name="image" onChange={handler} required />
 
         <div className="group_but">
-          <button type="submit" className="btn " >
+          <button type="submit" className="btn ">
             Отправить
           </button>
 

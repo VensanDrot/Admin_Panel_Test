@@ -17,10 +17,7 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import CL_create from "../modalforms/Cl_create";
 
-
-
 const Sidebar = () => {
-  
   const [cl_create_st, setCl_Create] = useState(false);
   const [parser, setParser] = useState("");
   const { dispatch } = useContext(DarkModeContext);
@@ -35,28 +32,30 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">Главная</p>
-          <Link to="/" >
-          <li>
-          
-            <DashboardIcon className="icon" />
-            <span>Панель управления</span>
-          
-          </li>
+          <Link to="/">
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Панель управления</span>
+            </li>
           </Link>
           <p className="title">Возможности</p>
-          <a onClick={() => {
-                    setCl_Create(true);
-                    setParser("inteam");
-                  }}>
+          <a
+            onClick={() => {
+              setCl_Create(true);
+              setParser("inteam");
+            }}
+          >
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Добавить сотрудника</span>
             </li>
           </a>
-          <a onClick={() => {
-                    setCl_Create(true);
-                    setParser("inclient");
-                  }}> 
+          <a
+            onClick={() => {
+              setCl_Create(true);
+              setParser("inclient");
+            }}
+          >
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Добавить клиента</span>
@@ -74,7 +73,6 @@ const Sidebar = () => {
               <span>Список клиентов</span>
             </li>
           </Link>
-          
         </ul>
       </div>
       <div className="bottom">
@@ -87,15 +85,13 @@ const Sidebar = () => {
           onClick={() => dispatch({ type: "DARK" })}
         ></div>
       </div>
-      <CL_create  active={cl_create_st}
+      <CL_create
+        active={cl_create_st}
         SetActive={setCl_Create}
-        parser={parser}></CL_create>
-      
+        parser={parser}
+      ></CL_create>
     </div>
-    
   );
 };
-
-
 
 export default Sidebar;

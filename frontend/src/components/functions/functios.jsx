@@ -31,10 +31,10 @@ const Functions = () => {
                 <Link to="/List/readclient">Просмотреть список</Link>
               </li>
               <li>
-              <Link to="/List/readclient">Редактировать запись</Link>
+                <Link to="/List/readclient">Редактировать запись</Link>
               </li>
               <li>
-              <Link to="/List/readclient">Удалить запись</Link>
+                <Link to="/List/readclient">Удалить запись</Link>
               </li>
             </ul>
           </div>
@@ -57,10 +57,10 @@ const Functions = () => {
                 <Link to="/List/readteam">Просмотреть список</Link>
               </li>
               <li>
-              <Link to="/List/readteam">Редактировать запись</Link>
+                <Link to="/List/readteam">Редактировать запись</Link>
               </li>
               <li>
-              <Link to="/List/readteam">Удалить запись</Link>
+                <Link to="/List/readteam">Удалить запись</Link>
               </li>
             </ul>
           </div>
