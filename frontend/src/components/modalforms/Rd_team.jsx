@@ -23,8 +23,15 @@ const Rd_team = () => {
   }, []);
 
 
-   const del = async event => 
+   const del = async (icon, event) => 
    {
+
+    const nameOfPic = icon.split('/').slice(4);
+    
+    fetch("http://localhost:3001/delimage/"+nameOfPic, {
+     method: "get",
+    }).then((res) => res.text());
+
     const id = event.currentTarget.id;
    const response = await fetch("http://localhost:3001/dteam", {
       method: "post",
@@ -56,7 +63,7 @@ const Rd_team = () => {
       {team.map((g) => {
         return (
           <div key={g.id} className="answers">
-            <div className="group"><p> {g.id} </p> <button className="pre" id={g.id} onClick={del} ><TiUserDelete /></button>
+            <div className="group"><p> {g.id} </p> <button className="pre" id={g.id} onClick={(event)=>del(g.icon, event)} ><TiUserDelete /></button>
         
             <Link className="pre" id={g.id} to={"/Tm_edit/"+g.id} ><FaEdit /></Link>
             </div>

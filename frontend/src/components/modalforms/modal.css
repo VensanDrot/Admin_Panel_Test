@@ -90,6 +90,9 @@ textarea {
 
 .pre {
     background-color: transparent;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .pre svg {
@@ -120,13 +123,13 @@ textarea {
     height: 20vh !important;
     position: relative;
     overflow: hidden !important;
-    width: 100%;
+    width: 93%;
     display: flex;
     justify-content: center;
 }
 
 .image img {
-    width: auto;
+    /* width: auto; */
     height: 100%;
     border-radius: 8px;
     object-fit: cover;

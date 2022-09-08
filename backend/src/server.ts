@@ -31,6 +31,19 @@ app.use(cors({
 
 
 
+fs.access("../image", function(error) {
+  if (error) {
+    fs.mkdir(path.join(__dirname,'../image'), (err)=> {
+      if (err) {
+        console.log(err);
+      }
+    })
+  }
+})
+
+
+
+
 // sql requests to mysql db
 app.post("/createteam", async (req: Request, res: Response) => {
   console.log(req.body);

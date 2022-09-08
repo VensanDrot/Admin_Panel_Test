@@ -50,7 +50,7 @@ const Sidebar = () => {
                   }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Добавить работника</span>
+              <span>Добавить сотрудника</span>
             </li>
           </a>
           <a onClick={() => {
@@ -65,7 +65,7 @@ const Sidebar = () => {
           <Link to="/List/readteam" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Список команды</span>
+              <span>Список сотрудников</span>
             </li>
           </Link>
           <Link to="/List/readclient" style={{ textDecoration: "none" }}>

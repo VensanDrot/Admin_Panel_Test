@@ -19,8 +19,14 @@ const Rd_clients = () => {
   }, []);
 
 
-  const del = async event => 
+  const del = async (image, event) => 
   {
+    console.log('here');
+    const nameOfPic = image.split('/').slice(4);
+    fetch("http://localhost:3001/delimage/"+nameOfPic, {
+     method: "get",
+    }).then((res) => res.text());
+
    const id = event.currentTarget.id;
   const response = await fetch("http://localhost:3001/dclient", {
      method: "post",
@@ -61,7 +67,7 @@ const Rd_clients = () => {
         {client.map((g) => {
           return (
             <div key={g.id} className="answers_client">
-              <div className="group"><p> {g.id} </p> <button className="pre" id={g.id} onClick={del} ><TiUserDelete /></button>
+              <div className="group"><p> {g.id} </p> <button className="pre" id={g.id} onClick={(event)=>del(g.image, event)} ><TiUserDelete /></button>
           
               <Link className="pre" id={g.id} to={"/Cl_Edit/"+g.id} ><FaEdit /></Link>
               </div>

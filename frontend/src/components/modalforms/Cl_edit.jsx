@@ -14,15 +14,44 @@ const Cl_edit = () => {
     const [name, SetName] = useState("");
     const [category, Setcategory] = useState("");
     const [description, Setdescription] = useState("");
-    const [image, Setimage] = useState("");
+    const [oldlink, Setold] = useState();
+    const [image1, Setimage] = useState({file:[]});
     const [client, Setclient] = useState([]);
+    const [flag, setFlag] = useState(true)
+    
     let num = 0;
 
+    
+    const response = fetch("http://localhost:3001/client", {
+      method: "post",
+      body: JSON.stringify({ id }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => res.json());
+  
+  
+    useEffect(() => {
+    response.then((data) => {
+    Setclient(data);
+    });
+    }, []);
+
+    useEffect(()=> {
+      
+    SetName(client.name);
+    Setdescription(client.description);
+    Setcategory(client.category);
+    Setold(client.image);
+    
+    }, [id,client])
+    
+ 
+
     const handler = (e) => {
-      const file = e.target.files;
-      Setimage(file[0]);
-      //console.log(image);
-       }
+      Setimage({
+        file: e.target.files[0],
+      })
+       setFlag(false);
+    }
   
   
        const sendEmail = async (e) => {
@@ -56,13 +85,40 @@ const Cl_edit = () => {
         }
         //console.log(num)
 
-        if (num < 1) {
-          const response = await fetch("http://localhost:3001/upclientimg", {
+        if (num < 1 && flag === true) {
+          const image = oldlink;
+          fetch("http://localhost:3001/upclientimg", {
           method: "post",
           body: JSON.stringify({id, name, category, description, image }),
           headers: { "Content-Type": "application/json" },
         });
       }
+       else if (num <1 && flag === false) {
+        const nameOfPic = oldlink.split('/').slice(4);
+    
+    fetch("http://localhost:3001/delimage/"+nameOfPic, {
+     method: "get",
+    }).then((res) => res.text());
+
+     const data = new FormData();
+     data.append('image',image1.file);
+     const image = await fetch("http://localhost:3001/upload", {
+       method: "post",
+       body: data,
+    
+      }).then(res => res.text())
+
+      Setold(image);
+    
+      fetch("http://localhost:3001/upclientimg", {
+        method: "post",
+        body: JSON.stringify({id, name, category, description, image }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      setFlag(true);
+     
+    }
        
     
 
@@ -71,29 +127,6 @@ const Cl_edit = () => {
 
 
 
-      const response = fetch("http://localhost:3001/client", {
-        method: "post",
-        body: JSON.stringify({ id }),
-        headers: { "Content-Type": "application/json" },
-      }).then((res) => res.json());
-    
-    
-      useEffect(() => {
-      response.then((data) => {
-      Setclient(data);
-      });
-      }, []);
-
-      useEffect(()=> {
-        
-      SetName(client.name);
-      Setdescription(client.description);
-      Setcategory(client.category);
-      Setimage(client.image);
-      
-      }, [id,client])
-      
-   
     
      
 
